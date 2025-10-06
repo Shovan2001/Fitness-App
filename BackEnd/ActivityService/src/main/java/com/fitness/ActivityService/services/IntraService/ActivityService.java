@@ -1,4 +1,4 @@
-package com.fitness.ActivityService.services;
+package com.fitness.ActivityService.services.IntraService;
 
 import com.fitness.ActivityService.dto.ActivityRequestDTO;
 import com.fitness.ActivityService.dto.ActivityResponseDTO;

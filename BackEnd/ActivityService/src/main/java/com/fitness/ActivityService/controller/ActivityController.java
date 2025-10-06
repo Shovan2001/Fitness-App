@@ -2,8 +2,7 @@ package com.fitness.ActivityService.controller;
 
 import com.fitness.ActivityService.dto.ActivityRequestDTO;
 import com.fitness.ActivityService.dto.ActivityResponseDTO;
-import com.fitness.ActivityService.models.Activity;
-import com.fitness.ActivityService.services.ActivityService;
+import com.fitness.ActivityService.services.IntraService.ActivityService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

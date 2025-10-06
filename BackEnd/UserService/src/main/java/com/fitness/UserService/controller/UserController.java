@@ -43,4 +43,12 @@ public class UserController {
         return new ResponseEntity<>(userResponseDTO, HttpStatus.OK);
     }
 
+    @GetMapping("/{userId}/validate")
+    public ResponseEntity<Boolean> validateUser(@PathVariable String userId) {
+
+       boolean isValidUser = userService.validateUser(userId);
+
+        return new ResponseEntity<>(isValidUser, HttpStatus.OK);
+    }
+
 }

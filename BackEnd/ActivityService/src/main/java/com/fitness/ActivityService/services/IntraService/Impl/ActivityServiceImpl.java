@@ -1,10 +1,11 @@
-package com.fitness.ActivityService.services.Impl;
+package com.fitness.ActivityService.services.IntraService.Impl;
 
 import com.fitness.ActivityService.dto.ActivityRequestDTO;
 import com.fitness.ActivityService.dto.ActivityResponseDTO;
 import com.fitness.ActivityService.models.Activity;
 import com.fitness.ActivityService.repository.ActivityRepository;
-import com.fitness.ActivityService.services.ActivityService;
+import com.fitness.ActivityService.services.InterService.UserValidationService;
+import com.fitness.ActivityService.services.IntraService.ActivityService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -14,8 +15,16 @@ public class ActivityServiceImpl implements ActivityService {
 
     private final ActivityRepository activityRepository;
 
+    private final UserValidationService userValidationService;
+
     @Override
     public ActivityResponseDTO addActivity(ActivityRequestDTO request) {
+
+        boolean isValidUser=userValidationService.validateUser(request.getUserId());
+
+        if(!isValidUser){
+            throw new RuntimeException("Invalid user. No Such UserId exists !! "+request.getUserId());
+        }
 
         Activity activity = Activity.builder()
                 .userId(request.getUserId())

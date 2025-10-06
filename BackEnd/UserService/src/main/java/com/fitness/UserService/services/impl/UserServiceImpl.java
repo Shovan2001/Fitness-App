@@ -67,6 +67,15 @@ public class UserServiceImpl implements UserService {
         return userResponseDTOS;
     }
 
+    @Override
+    public Boolean validateUser(String userId) {
+
+       boolean isValidUser = false;
+       isValidUser=userRepository.existsById(userId);
+
+        return isValidUser;
+    }
+
     private UserResponseDTO getUserResponseDTOFromUser(Users user) {
         UserResponseDTO userResponseDTO = new UserResponseDTO();
 

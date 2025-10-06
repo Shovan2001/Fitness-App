@@ -11,4 +11,6 @@ public interface UserService {
     UserResponseDTO getUserProfile(String userId);
 
     List<UserResponseDTO> getAllUserProfiles();
+
+    Boolean validateUser(String userId);
 }
