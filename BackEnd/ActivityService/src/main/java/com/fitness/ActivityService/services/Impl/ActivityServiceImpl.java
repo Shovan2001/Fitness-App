@@ -5,7 +5,6 @@ import com.fitness.ActivityService.dto.ActivityResponseDTO;
 import com.fitness.ActivityService.models.Activity;
 import com.fitness.ActivityService.repository.ActivityRepository;
 import com.fitness.ActivityService.services.ActivityService;
-import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
