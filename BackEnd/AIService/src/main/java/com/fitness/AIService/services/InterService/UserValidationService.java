@@ -1,4 +1,4 @@
-package com.fitness.ActivityService.services.InterService;
+package com.fitness.AIService.services.InterService;
 
 public interface UserValidationService {
 

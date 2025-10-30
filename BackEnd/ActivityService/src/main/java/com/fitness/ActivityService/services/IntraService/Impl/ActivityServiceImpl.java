@@ -20,9 +20,9 @@ public class ActivityServiceImpl implements ActivityService {
     @Override
     public ActivityResponseDTO addActivity(ActivityRequestDTO request) {
 
-        boolean isValidUser=userValidationService.validateUser(request.getUserId());
+        boolean isValidUserId=userValidationService.validateUserId(request.getUserId());
 
-        if(!isValidUser){
+        if(!isValidUserId){
             throw new RuntimeException("Invalid user. No Such UserId exists !! "+request.getUserId());
         }
 
@@ -38,6 +38,12 @@ public class ActivityServiceImpl implements ActivityService {
         Activity savedActivity=activityRepository.save(activity);
 
         return getActivityResponseDTOFromActivity(savedActivity);
+    }
+
+    @Override
+    public boolean validateActivityId(String activityId) {
+
+        return activityRepository.existsById(activityId);
     }
 
     private ActivityResponseDTO getActivityResponseDTOFromActivity(Activity activity)

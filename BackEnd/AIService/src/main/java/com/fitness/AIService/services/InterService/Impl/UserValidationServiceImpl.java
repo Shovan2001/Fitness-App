@@ -1,6 +1,6 @@
-package com.fitness.ActivityService.services.InterService.Impl;
+package com.fitness.AIService.services.InterService.Impl;
 
-import com.fitness.ActivityService.services.InterService.UserValidationService;
+import com.fitness.AIService.services.InterService.UserValidationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;

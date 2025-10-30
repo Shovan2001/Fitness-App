@@ -10,7 +10,7 @@ import java.util.Optional;
 @Repository
 public interface RecommendationsRepository extends MongoRepository<Recommendation,String> {
 
-    Optional<List<Recommendation>> findByUserId(String userId);
+    List<Recommendation> findByUserId(String userId);
 
     Optional<Recommendation> findByActivityId(String activityId);
 }

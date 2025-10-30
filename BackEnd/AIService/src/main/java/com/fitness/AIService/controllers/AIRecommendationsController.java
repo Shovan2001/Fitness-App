@@ -2,7 +2,7 @@ package com.fitness.AIService.controllers;
 
 
 import com.fitness.AIService.models.Recommendation;
-import com.fitness.AIService.service.RecommendationService;
+import com.fitness.AIService.services.IntraService.RecommendationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

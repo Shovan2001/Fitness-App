@@ -1,4 +1,4 @@
-package com.fitness.AIService.service;
+package com.fitness.AIService.services.IntraService;
 
 import com.fitness.AIService.models.Recommendation;
 

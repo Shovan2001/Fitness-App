@@ -44,11 +44,11 @@ public class UserController {
     }
 
     @GetMapping("/{userId}/validate")
-    public ResponseEntity<Boolean> validateUser(@PathVariable String userId) {
+    public ResponseEntity<Boolean> validateUserId(@PathVariable String userId) {
 
-       boolean isValidUser = userService.validateUser(userId);
+        boolean isValidUserId = userService.validateUserId(userId);
 
-        return new ResponseEntity<>(isValidUser, HttpStatus.OK);
+        return new ResponseEntity<>(isValidUserId, HttpStatus.OK);
     }
 
 }

@@ -6,10 +6,7 @@ import com.fitness.ActivityService.services.IntraService.ActivityService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/activities")
@@ -24,6 +21,14 @@ public class ActivityController {
         ActivityResponseDTO activityResponseDTO = activityService.addActivity(request);
 
         return new ResponseEntity<>(activityResponseDTO, HttpStatus.OK);
+    }
+
+    @GetMapping("/{activityId}/validate")
+    public ResponseEntity<Boolean> validateActivityId(@PathVariable String activityId) {
+
+        boolean isValidActivityId=activityService.validateActivityId(activityId);
+
+        return new ResponseEntity<>(isValidActivityId, HttpStatus.OK);
     }
 
 }
