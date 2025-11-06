@@ -7,17 +7,17 @@ import com.fitness.ActivityService.repository.ActivityRepository;
 import com.fitness.ActivityService.services.InterService.UserValidationService;
 import com.fitness.ActivityService.services.IntraService.ActivityService;
 import lombok.RequiredArgsConstructor;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class ActivityServiceImpl implements ActivityService {
 
-    private static final Logger log = LoggerFactory.getLogger(ActivityServiceImpl.class);
+//    private static final Logger log = LoggerFactory.getLogger(ActivityServiceImpl.class);
     private final ActivityRepository activityRepository;
     private final UserValidationService userValidationService;
     private final KafkaTemplate<String, Activity> kafkaTemplate;

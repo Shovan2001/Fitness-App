@@ -23,4 +23,13 @@ public class WebClientConfig {
     public WebClient activityServiceWebClient(WebClient.Builder webClientBuilder) {
         return webClientBuilder.baseUrl("http://ACTIVITYSERVICE").build();
     }
+
+    // for external api hits (Gemini)
+    // Cant use load Balanced, or it will give error.
+    // Load balanced is used for Microservices not for 3rd part api
+    @Bean
+    public WebClient geminiServiceWebClient()
+    {
+        return  WebClient.builder().build();
+    }
 }
