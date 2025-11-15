@@ -43,10 +43,18 @@ public class UserController {
         return new ResponseEntity<>(userResponseDTO, HttpStatus.OK);
     }
 
-    @GetMapping("/{userId}/validate")
-    public ResponseEntity<Boolean> validateUserId(@PathVariable String userId) {
+    @GetMapping("keyCloakId/{keyCloakId}/validate")
+    public ResponseEntity<Boolean> validateUserByKeyCloakId(@PathVariable String keyCloakId) {
 
-        boolean isValidUserId = userService.validateUserId(userId);
+        boolean isValidUserId = userService.validateUserByKeyCLoakId(keyCloakId);
+
+        return new ResponseEntity<>(isValidUserId, HttpStatus.OK);
+    }
+
+    @GetMapping("userId/{userId}/validate")
+    public ResponseEntity<Boolean> validateUserByUserId(@PathVariable String userId) {
+
+        boolean isValidUserId = userService.validateUserByUserId(userId);
 
         return new ResponseEntity<>(isValidUserId, HttpStatus.OK);
     }

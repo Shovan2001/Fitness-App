@@ -2,5 +2,8 @@ package com.fitness.AIService.services.InterService;
 
 public interface UserValidationService {
 
-    Boolean validateUserId(String userId);
+    Boolean validateUserByUserId(String userId);
+
+    Boolean validateUserByKeyCloakId(String keyCloakId);
+
 }

@@ -26,7 +26,9 @@ public class RecommendationServiceImpl implements RecommendationService {
     @Override
     public List<Recommendation> getAllRecommendationsForAUser(String userId) {
 
-        boolean isValidUserId = userValidationService.validateUserId(userId);
+        boolean isValidUserId = userValidationService.validateUserByUserId(userId);
+
+        boolean isValidKeyCloakId = userValidationService.validateUserByKeyCloakId(userId);
 
         if (!isValidUserId) {
             throw new RuntimeException("Invalid user. No Such UserId exists !! " + userId);

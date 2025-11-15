@@ -12,5 +12,7 @@ public interface UserService {
 
     List<UserResponseDTO> getAllUserProfiles();
 
-    Boolean validateUserId(String userId);
+    Boolean validateUserByKeyCLoakId(String keyCloakId);
+
+    Boolean validateUserByUserId(String userId);
 }

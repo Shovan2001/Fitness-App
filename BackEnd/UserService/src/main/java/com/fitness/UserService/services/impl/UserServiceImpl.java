@@ -2,7 +2,7 @@ package com.fitness.UserService.services.impl;
 
 import com.fitness.UserService.dto.UserRequestDTO;
 import com.fitness.UserService.dto.UserResponseDTO;
-import com.fitness.UserService.models.Users;
+import com.fitness.UserService.models.User;
 import com.fitness.UserService.repository.UserRepository;
 import com.fitness.UserService.services.UserService;
 import lombok.AllArgsConstructor;
@@ -20,17 +20,22 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserResponseDTO register(UserRequestDTO request) {
 
-        if (userRepository.existsByEmail(request.getEmail()))
-            throw new RuntimeException("User with this email already exists");
+        if (userRepository.existsByEmail(request.getEmail())) {
+//            throw new RuntimeException("User with this email already exists");
 
-        Users user = new Users();
+            User existingUser = userRepository.findByEmail(request.getEmail());
 
+            return getUserResponseDTOFromUser(existingUser);
+        }
+
+        User user = new User();
+        user.setKeyCloakId(request.getKeyCloakId());
         user.setEmail(request.getEmail());
         user.setPassword(request.getPassword());
         user.setFirstName(request.getFirstName());
         user.setLastName(request.getLastName());
 
-        Users savedUser = userRepository.save(user);
+        User savedUser = userRepository.save(user);
 
         return getUserResponseDTOFromUser(savedUser);
     }
@@ -38,7 +43,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserResponseDTO getUserProfile(String userId) {
 
-        Users user = userRepository.findById(userId).orElseThrow(() -> new RuntimeException("User not found"));
+        User user = userRepository.findById(userId).orElseThrow(() -> new RuntimeException("User not found"));
 
         return getUserResponseDTOFromUser(user);
     }
@@ -68,15 +73,24 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Boolean validateUserId(String userId) {
+    public Boolean validateUserByKeyCLoakId(String keyCloakId) {
 
+        return userRepository.existsByKeyCloakId(keyCloakId);
+
+//        return userRepository.existsById(userId);
+
+    }
+
+    @Override
+    public Boolean validateUserByUserId(String userId) {
         return userRepository.existsById(userId);
     }
 
-    private UserResponseDTO getUserResponseDTOFromUser(Users user) {
+    private UserResponseDTO getUserResponseDTOFromUser(User user) {
         UserResponseDTO userResponseDTO = new UserResponseDTO();
 
-        userResponseDTO.setId(user.getId());
+        userResponseDTO.setUserId(user.getId());
+        userResponseDTO.setKeyCloakId(user.getKeyCloakId());
         userResponseDTO.setEmail(user.getEmail());
         userResponseDTO.setFirstName(user.getFirstName());
         userResponseDTO.setLastName(user.getLastName());

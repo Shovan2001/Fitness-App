@@ -12,6 +12,8 @@ public class ActivityRequestDTO {
     //each activity must be associated with a user
     private String userId; // ID of the User
 
+    private String keycloakId;
+
     private ActivityType activityType;
 
     private Integer duration;

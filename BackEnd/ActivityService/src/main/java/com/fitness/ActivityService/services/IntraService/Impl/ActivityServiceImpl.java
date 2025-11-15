@@ -28,16 +28,20 @@ public class ActivityServiceImpl implements ActivityService {
     @Override
     public ActivityResponseDTO addActivity(ActivityRequestDTO request) {
 
-        boolean isValidUserId=userValidationService.validateUserId(request.getUserId());
+        boolean isValidUserId=userValidationService.validateUserByUserId(request.getUserId());
 
-        if(!isValidUserId){
+        boolean isValidKeyCloakId=userValidationService.validateUserByKeyCloakId(request.getKeycloakId());
+
+        if(!isValidUserId || !isValidKeyCloakId) {
             throw new RuntimeException("Invalid user. No Such UserId exists !! "+request.getUserId());
         }
 
         log.info("Valid userId: {}", request.getUserId());
+        log.info("Valid keyCloakId: {}", request.getKeycloakId());
 
         Activity activity = Activity.builder()
                 .userId(request.getUserId())
+                .keyCloakId(request.getKeycloakId())
                 .activityType(request.getActivityType())
                 .duration(request.getDuration())
                 .caloriesBurned(request.getCaloriesBurned())
@@ -67,6 +71,7 @@ public class ActivityServiceImpl implements ActivityService {
 
         activityResponseDTO.setActivityId(activity.getActivityId());
         activityResponseDTO.setUserId(activity.getUserId());
+        activityResponseDTO.setKeyCloakId(activity.getKeyCloakId());
         activityResponseDTO.setActivityType(activity.getActivityType());
         activityResponseDTO.setDuration(activity.getDuration());
         activityResponseDTO.setCaloriesBurned(activity.getCaloriesBurned());

@@ -26,6 +26,8 @@ public class Activity {
     //each activity must be associated with a user
     private String userId; // ID of the User
 
+    private String keyCloakId;
+
     private ActivityType activityType;
 
     private Integer duration;
